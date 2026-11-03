@@ -29,7 +29,7 @@ Packet references below were checked against the original public capture:
 - **Filename:** `2021-09-24-Squirrelwaffle-with-Qakbot-and-Cobalt-Strike.pcap`
 - **Size:** 56,029,783 bytes
 - **SHA-256:** `3cacb2c09f2309cec8bddc31a52fe0f9595837501f89a4dbeee589dc11e28d19`
-- **Time convention:** UTC, displayed to the nearest whole second by truncating fractional seconds
+- **Time convention:** UTC, displayed as whole seconds with fractional seconds truncated
 - **Scope:** Selected download, loader-connection, post-infection, Cobalt Strike-related, and IP-check activity
 
 The capture was examined as recorded data. Embedded payloads were not executed, and the suspicious destinations were not contacted. The capture itself is not redistributed in this repository.
