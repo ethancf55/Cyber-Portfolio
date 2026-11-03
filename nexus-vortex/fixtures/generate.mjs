@@ -5,7 +5,9 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
+const Synthetic = createRequire(import.meta.url)('../src/investigation/synthetic.js');
 const here = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const largeIndex = args.indexOf('--large');
@@ -172,26 +174,8 @@ const zeekRow = values => values.map(v => v == null ? '-' : String(v)).join('\t'
 
 /* ------------------------------------------------------------------- large */
 {
-  const r = rng(99);
-  const internal = Array.from({ length: 200 }, (_, i) => '10.30.' + Math.floor(i / 250) + '.' + (i % 250 + 1));
-  const external = Array.from({ length: 2000 }, (_, i) => ['192.0.2.', '198.51.100.', '203.0.113.'][i % 3] + (i % 250 + 1));
-  const lines = [];
-  let t = T0;
-  const span = 6 * 3600000, step = span / LARGE;
-  let beacon = T0 + 600000;
-  for (let i = 0; i < LARGE; i++) {
-    t += step * (0.5 + r());
-    const src = internal[Math.floor(r() * internal.length)], dst = external[Math.floor(r() * external.length)];
-    const kind = r();
-    let e;
-    if (t >= beacon && beacon < T0 + span) { e = { timestamp: iso(beacon + 300), event_type: 'flow', src_ip: '10.30.0.77', src_port: 40000 + (i % 20000), dest_ip: '198.51.100.250', dest_port: 8443, proto: 'TCP', flow: { start: iso(beacon), end: iso(beacon + 300), bytes_toserver: 300, bytes_toclient: 900, state: 'closed' } }; beacon += 120000 + Math.floor((r() - 0.5) * 2000); }
-    else if (kind < 0.55) e = { timestamp: iso(t + 2000), flow_id: i, event_type: 'flow', src_ip: src, src_port: 30000 + (i % 30000), dest_ip: dst, dest_port: [443, 80, 8080, 22][Math.floor(r() * 4)], proto: 'TCP', flow: { start: iso(t), end: iso(t + 2000), bytes_toserver: Math.floor(r() * 9000), bytes_toclient: Math.floor(r() * 90000), state: 'closed' } };
-    else if (kind < 0.85) e = { timestamp: iso(t), flow_id: i, event_type: 'dns', src_ip: '10.30.0.2', src_port: 53, dest_ip: src, dest_port: 30000 + (i % 30000), proto: 'UDP', dns: { type: 'answer', rrname: 'host' + (i % 3000) + '.example.com', rrtype: 'A', rcode: r() < 0.03 ? 'NXDOMAIN' : 'NOERROR', answers: [{ rrname: 'host' + (i % 3000) + '.example.com', rrtype: 'A', rdata: dst }] } };
-    else if (kind < 0.995) e = { timestamp: iso(t), flow_id: i, event_type: 'http', src_ip: src, src_port: 30000 + (i % 30000), dest_ip: dst, dest_port: 80, proto: 'TCP', http: { hostname: 'site' + (i % 500) + '.example.org', url: '/path/' + (i % 977), http_method: 'GET', status: 200, http_user_agent: 'SyntheticBrowser/1.0' } };
-    else e = { timestamp: iso(t), flow_id: i, event_type: 'alert', src_ip: src, src_port: 30000 + (i % 30000), dest_ip: dst, dest_port: 443, proto: 'TCP', alert: { signature: 'NV SYNTHETIC policy alert ' + (i % 7), signature_id: 9100000 + (i % 7), severity: 3 } };
-    lines.push(JSON.stringify(e));
-  }
-  const p = write('generated/large-' + LARGE + '.eve.json', lines.join('\n') + '\n');
-  console.log('wrote', p, (lines.join('\n').length / 1048576).toFixed(1) + ' MiB');
+  const text = Synthetic.large(LARGE);
+  const p = write('generated/large-' + LARGE + '.eve.json', text);
+  console.log('wrote', p, (text.length / 1048576).toFixed(1) + ' MiB');
 }
 console.log('fixtures written under', here);
