@@ -1,0 +1,3 @@
+Oct 23 18:01:00 vpn-01 sshd[10]: Accepted publickey for ops from 10.20.0.60 port 50000 ssh2
+2026-10-23T18:02:00.123456+00:00 vpn-01 sshd[11]: Accepted publickey for ops from 10.20.0.60 port 50001 ssh2
+<38>1 2026-10-23T18:03:00Z vpn-01 sshd 12 - - Failed password for ops from 10.20.0.61 port 50002 ssh2

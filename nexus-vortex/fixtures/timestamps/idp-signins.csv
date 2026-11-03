@@ -1,0 +1,14 @@
+event_id,timestamp,received_time,user,src_ip,result,app
+e1,2026-10-23T18:30:00Z,2026-10-23T18:30:01Z,alice@corp.example,10.20.0.50,success,vpn
+e2,2026-10-23T18:31:00+05:30,,bob@corp.example,10.20.0.41,success,vpn
+e3,2026-10-23 18:32:00,,carol@corp.example,10.20.0.42,failure,vpn
+e4,1792780380,,dave@corp.example,10.20.0.43,success,vpn
+e5,10/23/2026 6:34 PM,,erin@corp.example,10.20.0.44,success,vpn
+e6,05/06/2026 10:00,,frank@corp.example,10.20.0.45,success,vpn
+e7,,,grace@corp.example,10.20.0.46,failure,vpn
+e8,last tuesday,,heidi@corp.example,10.20.0.47,success,vpn
+e9,2026-10-23T18:39:00Z,2026-10-23T20:39:00Z,ivan@corp.example,10.20.0.48,success,vpn
+e1,2026-10-23T18:30:00Z,2026-10-23T18:30:01Z,alice@corp.example,10.20.0.50,failure,vpn
+e10,1970-01-01T00:00:00Z,,judy@corp.example,10.20.0.49,success,vpn
+e11,2026-10-23T18:41:00Z,,mallory@corp.example,10.20.0.51,maybe,vpn
+e2,2026-10-23T18:31:00+05:30,,bob@corp.example,10.20.0.41,success,vpn

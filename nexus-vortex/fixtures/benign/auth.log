@@ -1,0 +1,7 @@
+Oct 23 18:01:00 web-01 sshd[2101]: Accepted publickey for bob from 10.20.0.41 port 50122 ssh2: ED25519 SHA256:synthetic
+Oct 23 18:05:00 web-01 sshd[2140]: Failed password for alice from 10.20.0.50 port 50311 ssh2
+Oct 23 18:05:08 web-01 sshd[2140]: Failed password for alice from 10.20.0.50 port 50311 ssh2
+Oct 23 18:05:15 web-01 sshd[2140]: Accepted password for alice from 10.20.0.50 port 50311 ssh2
+Oct 23 18:05:16 web-01 sshd[2140]: pam_unix(sshd:session): session opened for user alice(uid=1001) by (uid=0)
+Oct 23 18:15:00 web-01 CRON[2200]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Oct 23 18:30:00 web-01 sudo[2301]:    alice : TTY=pts/1 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/systemctl status nginx

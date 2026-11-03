@@ -1,0 +1,12 @@
+orphan	line	before	header
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2026-10-23-18-00-00
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state
+#types	string	string	string	string	string	string	string	string	string	string	string	string
+1792778400.000000	Cm1	10.20.0.5	40000	192.0.2.10	443	tcp	ssl	1.0	10	10	SF
+too	few	fields
+1792778401.000000	Cm2	not-an-ip	40001	192.0.2.10	port?	tcp	ssl	1.0	10	10	SF
