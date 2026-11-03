@@ -1,68 +1,162 @@
-# Carnage: Word Macro Infection, Qakbot Download, and Cobalt Strike C2
+# Carnage Network Traffic Investigation
 
-**Analyst:** Ethan
-**Source:** TryHackMe "Carnage" room, using the public Malware-Traffic-Analysis.net capture from 2021-09-24 (credit: Brad Duncan)
-**Tools:** Wireshark (macOS), VirusTotal
-**Skills:** Packet analysis, DNS and HTTP investigation, TLS certificate review, threat intelligence lookup
+**Analyst:** Ethan Fleming  
+**Type:** Defensive training case study  
+**Tools:** Wireshark on macOS, VirusTotal for the original investigation, and TShark for packet-reference verification  
+**Capture date:** September 24, 2021  
+**Skills demonstrated:** HTTP and DNS investigation, TLS metadata review, timeline construction, indicator documentation, and incident escalation reasoning
 
-## Summary
+## Executive summary
 
-A user at Bartell Ltd (workstation 10.9.23.102) opened a Word document from an email and enabled its content. Within a minute, the workstation downloaded `documents.zip` from `attirenepal.com`. The zip contained an Excel file, `chart-1530076591.xls`. The host then made DNS lookups and encrypted connections to several unrelated domains, and [describe what followed, e.g., "additional payloads were retrieved"]. About 90 seconds later, it began sending POST requests to `maldivehost.net` roughly every 25 seconds, which is consistent with command-and-control (C2) check-ins. The capture also shows Cobalt Strike C2 IP addresses and a lookup to a public IP-check service.
+The capture shows workstation `10.9.23.102` requesting `documents.zip` from `attirenepal[.]com`, followed by connections to three domains associated with loader delivery in the source research. The host then sends 26 HTTP POST requests to `maldivehost[.]net`, with a median interval of approximately 25.10 seconds. Later traffic includes infrastructure identified by the source researcher as Cobalt Strike, plus a lookup for the public IP-check service `api[.]ipify[.]org`.
 
-## Timeline (UTC, 2021-09-24)
+Together, the network evidence and source research support treating the workstation as compromised in this training scenario. In a real investigation, I would escalate the findings with the affected host, UTC timeline, and relevant packet references, then recommend containment and collection of endpoint evidence.
 
-| Time | Event |
-|---|---|
-| 16:44:38 | GET `/incidunt-consequatur/documents.zip` from `attirenepal[.]com` (85.187.128.24) |
-| [time] | DNS lookups for `finejewels[.]com[.]au`, `thietbiagt[.]com`, `new[.]americold[.]com` |
-| [time] | Encrypted connections to the same three domains |
-| 16:46:16 | First POST to `maldivehost[.]net` (208.91.128.6). Check-ins begin |
-| 16:46:41 onward | Repeated POSTs about every 25 seconds |
-| 17:00:04 | DNS query for `api[.]ipify[.]org`, a public IP-check service |
+This is lab analysis of historical traffic. The response actions below are recommendations; they were not performed on a production environment.
 
-## Indicators of Compromise
+## Scenario and evidence scope
 
-Domains and URLs are defanged (`[.]`) so they can't be clicked by accident.
+[TryHackMe's Carnage scenario](https://tryhackme.com/room/c2carnage) describes a Bartell Ltd employee opening a Word attachment and enabling content, followed by an endpoint alert. Those user actions come from the scenario, rather than direct observation in this network capture.
 
-| Type | Indicator | Context |
+The underlying capture and indicator list were published by [Brad Duncan at Malware-Traffic-Analysis.net](https://www.malware-traffic-analysis.net/2021/09/24/index.html) as a Squirrelwaffle infection involving Qakbot and Cobalt Strike. That research describes an email-link-to-ZIP-to-Office-document chain. I keep the training narrative and the source research distinct rather than presenting them as identical evidence.
+
+The source researcher also states uncertainty about whether Squirrelwaffle loaded Qakbot or whether they were loaded at the same time. This report does not claim to resolve that sequence.
+
+### Reproducibility
+
+Packet references below were checked against the original public capture:
+
+- **Filename:** `2021-09-24-Squirrelwaffle-with-Qakbot-and-Cobalt-Strike.pcap`
+- **Size:** 56,029,783 bytes
+- **SHA-256:** `3cacb2c09f2309cec8bddc31a52fe0f9595837501f89a4dbeee589dc11e28d19`
+- **Time convention:** UTC, displayed to the nearest whole second by truncating fractional seconds
+- **Scope:** Selected download, loader-connection, post-infection, Cobalt Strike-related, and IP-check activity
+
+The capture was examined as recorded data. Embedded payloads were not executed, and the suspicious destinations were not contacted. The capture itself is not redistributed in this repository.
+
+## Timeline
+
+All events occurred on **September 24, 2021, in UTC**. Frame numbers refer to the capture identified above.
+
+| Time | Frame | Observation |
+|---|---:|---|
+| 16:44:38 | 1735 | HTTP GET to `85.187.128.24`, Host `attirenepal[.]com`, requesting `/incidunt-consequatur/documents.zip` |
+| 16:45:11 | 2422, 2427 | DNS query for `finejewels[.]com[.]au`, followed by a TLS ClientHello to `148.72.192.206` with that server name |
+| 16:45:20–16:45:21 | 2983, 3009 | DNS query for `thietbiagt[.]com`, followed by a TLS ClientHello to `210.245.90.247` with that server name |
+| 16:45:25 | 3224, 3229 | DNS query for `new[.]americold[.]com`, followed by a TLS ClientHello to `148.72.53.144` with that server name |
+| 16:46:16 | 3822 | First HTTP POST to `208.91.128.6`, Host `maldivehost[.]net`, with URI prefix `/zLIisQRWZI9/` |
+| 16:46:41 | 3908 | Next POST to the same host, approximately 25.11 seconds after the first |
+| 16:53:27 | 4493 | DNS query for `securitybusinpuff[.]com`, associated with Cobalt Strike in the source indicator list |
+| 16:55:10–16:55:11 | 6510, 6516 | DNS query for `survmeter[.]live`, followed by HTTP to `185.106.96.158` using Host `ocsp.verisign[.]com` |
+| 16:55:44 | 7112 | TLS ClientHello to `185.125.204.174` with server name `securitybusinpuff[.]com` |
+| 17:00:04 | 24147, 24162 | DNS query for `api[.]ipify[.]org`, followed by a TLS ClientHello using that server name |
+
+## Findings and reasoning
+
+### Initial archive request
+
+Frame 1735 identifies the source workstation, destination IP, HTTP Host header, and requested ZIP path. The source research identifies the archive member as `chart-1530076591.xls`.
+
+The network request establishes contact with the archive-delivery location. The ZIP contents and source research support the Office-document link in the infection chain. A request alone does not prove that a user opened the downloaded file or enabled macros.
+
+### Connections associated with loader delivery
+
+The workstation queries three domains and then initiates TLS sessions using matching server names: `finejewels[.]com[.]au`, `thietbiagt[.]com`, and `new[.]americold[.]com`. Brad Duncan's indicator list identifies URLs on these hosts as loader DLL locations.
+
+Frame 2436 contains the certificate for `finejewels[.]com[.]au`; the leaf certificate issuer is **Go Daddy Secure Certificate Authority - G2**. A recognized certificate issuer does not establish that a destination is safe.
+
+DNS queries and TLS metadata show the contacted infrastructure. Without decryption, they do not independently reveal the HTTPS response bodies or prove successful payload execution.
+
+### Repeated post-infection traffic
+
+Filtering for POST requests to `208.91.128.6` with Host `maldivehost.net` returns **26 requests**. Their URI paths start with `/zLIisQRWZI9/`. Across the 25 consecutive intervals, the median is approximately **25.10 seconds**, with a range of approximately **24.98–25.70 seconds**.
+
+That regularity supports a beaconing hypothesis in the context of this infection. Periodicity alone would be insufficient to label traffic malicious. The source researcher specifically attributes this destination and URI pattern to **Squirrelwaffle post-infection traffic**.
+
+### Cobalt Strike infrastructure and Host-header mismatch
+
+The source indicator list associates `185.125.204.174` with `securitybusinpuff[.]com`, and `185.106.96.158` with `survmeter[.]live`. The capture contains traffic to both IPs.
+
+One useful detail is the HTTP Host header `ocsp.verisign.com` in requests sent to `185.106.96.158`. In this context, the familiar-looking header should not override the destination IP, DNS evidence, and source attribution. This is not evidence that Verisign's own service was compromised.
+
+The Cobalt Strike attribution here relies on the original research, alongside the observed network evidence. It is not presented as a new, independently reproduced VirusTotal verdict.
+
+### Public IP-check activity
+
+At 17:00:04 UTC, the workstation queries `api[.]ipify[.]org` and begins a TLS connection using that server name. The source research identifies this as Qakbot-related public IP-check activity.
+
+An IP-check service is not inherently malicious. Its relevance comes from the host's surrounding infection activity, so I would correlate it with other evidence rather than recommend blocking the service broadly.
+
+## Historical indicators
+
+These values describe the 2021 capture and source research. They are investigation pivots for this case, not claims about current domain ownership or reputation. Dots in domains are defanged as `[.]`.
+
+| Indicator | Role in this case | Evidence basis |
 |---|---|---|
-| Domain | `attirenepal[.]com` | Hosted the malicious zip |
-| File | `documents.zip` | Downloaded via Word macro |
-| File | `chart-1530076591.xls` | Inside the zip |
-| Domain | `maldivehost[.]net` | POST destination (C2 check-ins) |
-| IP | `208.91.128.6` | Destination of check-in POSTs |
-| IP | `185.125.204.174`, `185.106.96.158` | Cobalt Strike C2 servers (confirmed on VirusTotal) |
-| Domain | `[domain for first Cobalt Strike IP]` | Resolved to the first Cobalt Strike IP |
-| Domain | `finejewels[.]com[.]au` | Encrypted connection; certificate issued by GoDaddy |
-| Domain | `thietbiagt[.]com`, `new[.]americold[.]com` | Additional contacted domains |
-| Service | `api[.]ipify[.]org` | Public IP lookup by the malware |
+| `10.9.23.102` | Affected workstation | Capture |
+| `attirenepal[.]com` / `85.187.128.24` | Initial archive request | HTTP frame 1735; source research |
+| `documents.zip` / `chart-1530076591.xls` | Archive and Office document | Requested ZIP in capture; archive member in source research |
+| `finejewels[.]com[.]au` / `148.72.192.206` | Loader-associated infrastructure | DNS/TLS metadata; source research |
+| `thietbiagt[.]com` / `210.245.90.247` | Loader-associated infrastructure | DNS/TLS metadata; source research |
+| `new[.]americold[.]com` / `148.72.53.144` | Loader-associated infrastructure | DNS/TLS metadata; source research |
+| `maldivehost[.]net` / `208.91.128.6` | Squirrelwaffle post-infection POSTs | Capture; source attribution |
+| `securitybusinpuff[.]com` / `185.125.204.174` | Cobalt Strike-associated infrastructure | Capture; source attribution |
+| `survmeter[.]live` / `185.106.96.158` | Cobalt Strike-associated infrastructure | Capture; source attribution |
+| `ocsp.verisign[.]com` | Host header used in traffic to `185.106.96.158` | HTTP frame 6516; not a blanket domain-block recommendation |
+| `api[.]ipify[.]org` | Public IP-check service contacted by the workstation | Frame 24147; contextual indicator only |
 
-## Analysis Method
+## Investigation method
 
-1. **Set the time format** to UTC so every timestamp could be compared with the others.
-2. **Filtered web requests** with `http.request && !ssdp` to remove background SSDP noise. This exposed the zip download at packet 1735.
-3. **Followed the TCP stream** for that download. The response headers showed `filename=documents.zip`, and the zip's internal file name was visible after the `PK` signature.
-4. **Read the post-infection traffic** with `http.request.method == POST && ip.dst == 208.91.128.6`. The Host header showed `maldivehost.net`, and the request path began `/zLIisQRWZI9`.
-5. **Isolated the lookups** that came after the download with `dns.flags.response == 0 && frame.number > 1735`, then excluded Microsoft, Bing, and internal-domain names. The remaining outside domains were the suspects.
-6. **Verified the suspects** by checking which domains had encrypted connections (`tls.handshake.extensions_server_name`) and reading the certificate issuer (`tls.handshake.type == 11`).
-7. **Checked IPs on VirusTotal**, using the Community and Relations tabs. I never visited the IPs or domains directly.
+1. Set Wireshark's time display to UTC and identify the source workstation.
+2. Inspect HTTP requests while excluding background SSDP discovery traffic:
+   ```text
+   ip.src == 10.9.23.102 && http.request && !ssdp
+   ```
+3. Inspect frame 1735 and follow its TCP stream to review the archive request and response context. Compare the filenames with the source indicator list.
+4. Review the POST sequence and calculate intervals from packet timestamps:
+   ```text
+   ip.src == 10.9.23.102 && ip.dst == 208.91.128.6 &&
+   http.request.method == "POST" && http.host == "maldivehost.net"
+   ```
+5. Examine DNS queries and TLS ClientHello server names after the initial archive request:
+   ```text
+   ip.src == 10.9.23.102 && frame.number > 1735 &&
+   (dns.flags.response == 0 || tls.handshake.type == 1)
+   ```
+6. Review the server certificate in frame 2436 and correlate server names with destination IPs. Certificate identity is contextual evidence, not a malware verdict.
+7. Compare the observed infrastructure with Brad Duncan's indicator list. VirusTotal can provide additional context, but a lookup's date and evidence should be recorded before treating it as independent confirmation.
 
-## Recommendations
+Excluding SSDP in this workflow is an analysis filter. This case does not claim deployment or tuning of a production detection rule.
 
-- **Block** `attirenepal[.]com`, `maldivehost[.]net`, the Cobalt Strike IPs, and the other listed domains at the firewall and proxy.
-- **Isolate** workstation 10.9.23.102 and check it for persistence, including scheduled tasks, new services, and additional payloads.
-- **Reset** the affected user's credentials, revoke active sessions, and review recent sign-ins.
-- **Search** all endpoints and proxy logs for the indicators above to find other infected hosts.
-- **Train** users to treat "Enable Content" prompts on unexpected email attachments as a red flag.
+## Recommended response in a real environment
 
-## MITRE ATT&CK Mapping
+- **Escalate and contain:** Send the host identity, UTC timeline, and packet references to the incident responder. Request authorized endpoint isolation while preserving evidence.
+- **Scope the incident:** Search endpoint, DNS, proxy, firewall, and email records for the archive request and associated destinations. Check whether other hosts show the same sequence.
+- **Collect endpoint evidence:** Investigate Office child processes, downloaded files, DLL execution, scheduled tasks, and other persistence mechanisms. Network traffic alone does not establish these endpoint details.
+- **Apply targeted controls:** Validate current relevance before blocking confirmed malicious destinations. Avoid broad blocks on legitimate services based only on a misleading Host header or an IP-check lookup.
+- **Protect accounts and recover:** Review sign-ins and potential credential exposure. Reset credentials, revoke sessions, and rebuild or remediate affected systems as supported by the investigation and response procedures.
 
-- T1566.001: Phishing, Spearphishing Attachment
-- T1204.002: User Execution, Malicious File
-- T1105: Ingress Tool Transfer
-- T1071.001: Application Layer Protocol, Web Protocols
-- T1016: System Network Configuration Discovery (IP check)
+In business terms, the concern is that a workstation may remain under external control and expose credentials or business data. This capture does not by itself establish data theft or the full impact of the infection.
 
-## What I Would Do Differently
+## MITRE ATT&CK interpretation
 
-My first guesses about suspicious domains were based on names alone and were often wrong. I got better at filtering by time window and confirming each name with evidence, such as a completed connection or a certificate, before drawing a conclusion.
+These are analyst mappings, with their evidence limits stated explicitly.
+
+| Technique | Basis |
+|---|---|
+| [T1566.001 — Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001/) | The TryHackMe Word-attachment scenario; not independently established by the network timeline |
+| [T1204.002 — Malicious File](https://attack.mitre.org/techniques/T1204/002/) | User action described by the scenario and Office-document execution chain in the source research |
+| [T1105 — Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105/) | Archive delivery and loader locations described in the source research; encrypted transfers have the visibility limits noted above |
+| [T1071.001 — Web Protocols](https://attack.mitre.org/techniques/T1071/001/) | HTTP POST activity attributed to Squirrelwaffle and web traffic associated with Cobalt Strike |
+| [T1016.001 — Internet Connection Discovery](https://attack.mitre.org/techniques/T1016/001/) | Public IP/connectivity-check behavior described in the source research and correlated with the observed IP-check connection |
+
+## What I learned
+
+My early guesses about suspicious domains relied too heavily on their names. Correlating timestamps, destination IPs, HTTP headers, and TLS metadata produced a stronger explanation. I also learned to separate the scenario, packet observations, source attribution, and recommendations so that each conclusion has a clear basis.
+
+## Sources
+
+- [TryHackMe — Carnage](https://tryhackme.com/room/c2carnage): training scenario and investigation questions.
+- [Brad Duncan — September 24, 2021 Squirrelwaffle with Qakbot and Cobalt Strike](https://www.malware-traffic-analysis.net/2021/09/24/index.html): original capture and accompanying IOC text archive. Credit for capture collection and malware-family attribution belongs to the source researcher.
+- [Wireshark HTTP display-filter reference](https://www.wireshark.org/docs/dfref/h/http.html): HTTP field definitions.
+- [MITRE ATT&CK](https://attack.mitre.org/): technique definitions linked above.
