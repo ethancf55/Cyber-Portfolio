@@ -1,3 +1,44 @@
+# Ethan Fleming — Cyber Portfolio
+
+I am pursuing an entry-level cybersecurity role and studying for CompTIA Security+. I hold an Associate of Arts from Collin College. This portfolio includes a defensive investigation and a personal security-focused web project.
+
+## Featured projects
+
+| Project | Type | What to explore |
+| --- | --- | --- |
+| [Carnage Network Traffic Investigation](#carnage-network-traffic-investigation) | Completed defensive training case study | Packet evidence, investigation timeline, indicators, and proposed escalation steps |
+| [Nexus Vortex](https://nexus-vortex.safebison1024.chatgpt.site/) | Interactive web project with evidence-analysis tools and training simulations | Imported evidence, file hashing, case documentation, and visual investigation workflows |
+
+## Nexus Vortex
+
+**[Open the live project](https://nexus-vortex.safebison1024.chatgpt.site/)**
+
+Nexus Vortex is my personal cyber-operations web project, hosted through ChatGPT Sites. It brings browser-based evidence tools and interactive security-training scenarios into one interface.
+
+### Features in the published web edition
+
+- **Incident reconstruction:** Import supported logs, review accepted and rejected records, inspect source records and timestamp assumptions, and explore findings through a timeline and interactive mesh.
+- **Evidence Lab and case notes:** Inspect supplied text/log evidence, review rule-based findings, and save or export investigation notes and case data.
+- **File hashing and verification:** Compute SHA-256, SHA-512, and BLAKE3 digests and compare a result against a supplied reference digest.
+- **File integrity review:** On supported browsers, select a folder, capture a baseline, and review changes during subsequent scans.
+- **Training simulations:** Explore alert-triage exercises, network visualizations, and incident-sequence reconstruction using simulated scenarios.
+
+### Relevance to security work
+
+The project explores evidence provenance, clear investigation records, the distinction between an observation and a conclusion, and presenting technical information in an interactive interface. It complements the packet-analysis case study below.
+
+### Scope and limitations
+
+The public web edition processes selected evidence in the browser. Browser storage and exported cases may contain sensitive information, so use synthetic or sanitized examples for demonstrations.
+
+Training dashboards, scoring, memory views, and the fictional C2/quantum displays are simulations. They do not demonstrate live threat detection, real memory acquisition, or cryptographic decryption. A rule match is a prompt for investigation, not proof of compromise.
+
+Live log collection, account connectors, and scoped network scanning require a separate local companion and are not available just by opening the hosted page. Folder monitoring depends on browser support, permission, and the page remaining active; this is not continuous endpoint protection.
+
+This entry links to the current hosted project. Its application source and local companion are not included in this portfolio repository.
+
+---
+
 # Carnage Network Traffic Investigation
 
 **Analyst:** Ethan Fleming  
