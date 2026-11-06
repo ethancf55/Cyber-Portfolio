@@ -1,0 +1,4 @@
+timestamp,user,src_ip,result
+2026-10-23T18:00:00Z,"alice,10.20.0.5,failure
+2026-10-23T18:00:05Z,bob,10.20.0.6,success
+2026-10-23T18:00:06Z,carol,10.20.0.7

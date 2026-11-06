@@ -1,0 +1,129 @@
+      <!-- INCIDENT RECONSTRUCTION -->
+      <section class="view" data-view="investigate" id="view-investigate" aria-labelledby="irTitle">
+        <div class="view__head">
+          <div>
+            <p class="eyebrow"><span class="dot live"></span> SECTOR 11 // INCIDENT RECONSTRUCTION // IMPORTED EVIDENCE</p>
+            <h1 class="page-title" id="irTitle">EVIDENCE <span class="thin">/</span> <span class="plasma">RECONSTRUCTION</span></h1>
+            <p class="lede">Import logs, check exactly what was accepted, follow findings that cite their records through the <strong>Neural Threat Mesh</strong> and the timeline, then keep a case that survives a reload.</p>
+          </div>
+          <div class="head-actions">
+            <span class="class-stamp">BROWSER-LOCAL / NO UPLOAD</span>
+            <button class="btn btn--ghost btn--sm" data-route="mesh"><svg class="icon"><use href="#i-mesh"/></svg> FULL MESH ↗</button>
+          </div>
+        </div>
+
+        <nav class="ir-steps" aria-label="Investigation workflow">
+          <a href="#irImport" data-ir-step="import"><b>01</b> IMPORT</a>
+          <a href="#irReceipts" data-ir-step="quality"><b>02</b> QUALITY</a>
+          <a href="#irFindings" data-ir-step="findings"><b>03</b> FINDINGS</a>
+          <a href="#irMeshPanel" data-ir-step="mesh"><b>04</b> MESH</a>
+          <a href="#irTimelinePanel" data-ir-step="timeline"><b>05</b> TIMELINE</a>
+          <a href="#irCases" data-ir-step="case"><b>06</b> CASE</a>
+        </nav>
+
+        <div class="ir-grid ir-grid--intake">
+          <article class="panel ir-panel" id="irImport" aria-labelledby="irImportTitle">
+            <div class="phead"><div class="phead__title"><span class="phead__kicker">01 // ACQUIRE</span><h2 id="irImportTitle">EVIDENCE INTAKE</h2></div><span class="hud-chip" id="irEngineChip">ENGINE —</span></div>
+            <div class="pbody">
+              <label class="ir-drop" id="irDrop" for="irFiles"><span class="ir-drop__sigil" aria-hidden="true">⬡</span><strong>DROP LOG FILES OR CHOOSE FILES</strong><span>Suricata EVE · Zeek conn/dns/http/ssl · syslog auth · authentication CSV · Windows logon JSON · Nmap/Nessus/OpenVAS/Trivy/SARIF/ZAP via legacy adapter</span><input id="irFiles" type="file" multiple></label>
+              <div class="ir-form">
+                <label>FORMAT<select id="irFormat"><option value="auto">Auto-detect</option><option value="suricata-eve">Suricata EVE JSON</option><option value="zeek-tsv">Zeek TSV</option><option value="zeek-json">Zeek JSON</option><option value="syslog-auth">Syslog / auth.log</option><option value="auth-csv">Authentication CSV</option><option value="windows-auth-json">Windows logon events (JSON)</option><option value="text">Generic text lines (unverified)</option></select></label>
+                <label>TIMESTAMPS WITHOUT A ZONE ARE<select id="irZone"></select></label>
+                <label>SYSLOG YEAR (NOT IN SOURCE)<input id="irYear" type="number" min="1990" max="2100" step="1"></label>
+                <label>SLASH DATES (05/06/2026)<select id="irSlash"><option value="reject">Leave ambiguous as unknown</option><option value="mdy">Month / day / year</option><option value="dmy">Day / month / year</option></select></label>
+              </div>
+              <div class="ir-progress" id="irProgress" hidden>
+                <div class="ir-progress__head"><span id="irProgressLabel">Reading…</span><b id="irProgressPct">0%</b></div>
+                <progress id="irProgressBar" max="100" value="0" aria-label="Import progress"></progress>
+                <button class="btn btn--danger btn--sm" id="irCancel" type="button">CANCEL IMPORT</button>
+              </div>
+              <p class="ir-status" id="irStatus" role="status" aria-live="polite">Files are read in this browser. Nothing is uploaded.</p>
+              <details class="ir-synthetic">
+                <summary>SYNTHETIC FIXTURES / FOR DEMONSTRATION</summary>
+                <p class="ir-hint">Generated data using documentation address ranges and reserved .example/.test names. Sources are labelled <code>synthetic/…</code> so they cannot be mistaken for your evidence.</p>
+                <div class="ir-actions">
+                  <button class="btn btn--sm" data-ir-fixture="benign">BENIGN</button>
+                  <button class="btn btn--sm" data-ir-fixture="suspicious">SUSPICIOUS</button>
+                  <button class="btn btn--sm" data-ir-fixture="malformed">MALFORMED</button>
+                  <button class="btn btn--sm" data-ir-fixture="timestamps">TIMESTAMPS</button>
+                  <button class="btn btn--sm" data-ir-fixture="hostile">HOSTILE HTML</button>
+                  <button class="btn btn--sm" data-ir-fixture="large">GENERATE 50,000 EVENTS</button>
+                </div>
+              </details>
+              <p class="ir-hint" id="irLimits"></p>
+            </div>
+          </article>
+
+          <article class="panel ir-panel" id="irReceipts" aria-labelledby="irReceiptsTitle">
+            <div class="phead"><div class="phead__title"><span class="phead__kicker">02 // INGESTION QUALITY</span><h2 id="irReceiptsTitle">IMPORT RECEIPTS</h2></div><span class="hud-chip" id="irReceiptCount">0 IMPORTS</span></div>
+            <div class="pbody ir-receipts">
+              <div class="ir-receipt-list" id="irReceiptList" role="list"></div>
+              <div class="ir-receipt-detail" id="irReceiptDetail"><p class="fabric-empty">Each import produces a receipt: accepted, rejected and duplicate records, timestamp assumptions, conflicts and any limit that stopped it.</p></div>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel ir-panel" id="irTimelinePanel" aria-labelledby="irTimelineTitle">
+          <div class="phead"><div class="phead__title"><span class="phead__kicker">05 // TIME-BASED RECONSTRUCTION</span><h2 id="irTimelineTitle">INVESTIGATION WINDOW</h2></div><span class="hud-chip hud-chip--mag" id="irWindowChip">NO EVIDENCE</span></div>
+          <div class="pbody" data-ir-timeline="full"></div>
+        </article>
+
+        <div class="ir-grid ir-grid--main">
+          <article class="panel ir-panel" id="irFindings" aria-labelledby="irFindingsTitle">
+            <div class="phead"><div class="phead__title"><span class="phead__kicker">03 // EXPLAINABLE CORRELATION</span><h2 id="irFindingsTitle">FINDINGS</h2></div><span class="hud-chip" id="irFindingCount">0</span></div>
+            <div class="pbody">
+              <div class="ir-actions" role="group" aria-label="Finding filter"><button class="chip is-active" data-ir-ffilter="window" aria-pressed="true">IN WINDOW</button><button class="chip" data-ir-ffilter="all" aria-pressed="false">ALL</button></div>
+              <div class="ir-finding-list" id="irFindingList"></div>
+              <details class="ir-coverage" id="irCoverage"><summary>RULE COVERAGE / WHAT COULD NOT BE EVALUATED</summary><div id="irCoverageBody"></div></details>
+            </div>
+          </article>
+
+          <article class="panel panel--mesh ir-mesh" id="irMeshPanel" aria-labelledby="irMeshTitle">
+            <div class="phead">
+              <div class="phead__title"><span class="phead__kicker">04 // NV-CORE // EVIDENCE OVERLAY</span><h2 id="irMeshTitle">NEURAL THREAT MESH</h2></div>
+              <div class="phead__meta"><span class="hud-chip" id="irMeshChip">0 ASSETS</span><button class="iconbtn" data-ir-mesh="recenter" aria-label="Recenter mesh"><svg class="icon"><use href="#i-crosshair"/></svg></button></div>
+            </div>
+            <div class="ir-mesh__stage" id="irMeshStage">
+              <canvas id="irMeshCanvas" role="img" aria-label="Neural threat mesh of imported evidence. Drag to orbit, wheel to zoom, select a node or a line to see its supporting records. The asset list beside the mesh offers the same selections by keyboard."></canvas>
+              <div class="mesh-tooltip" id="irMeshTip"></div>
+              <div class="scanline-overlay"></div>
+            </div>
+            <div class="ir-legend" id="irLegend"></div>
+          </article>
+
+          <article class="panel ir-panel ir-detail" id="irDetail" aria-labelledby="irDetailTitle">
+            <div class="phead"><div class="phead__title"><span class="phead__kicker" id="irDetailKicker">SELECTION</span><h2 id="irDetailTitle">DETAIL</h2></div><button class="iconbtn" id="irDetailClear" aria-label="Clear selection"><svg class="icon"><use href="#i-close"/></svg></button></div>
+            <div class="pbody" id="irDetailBody"></div>
+          </article>
+        </div>
+
+        <article class="panel ir-panel" id="irExplorer" aria-labelledby="irExplorerTitle">
+          <div class="phead"><div class="phead__title"><span class="phead__kicker">EVENT EXPLORER // ORIGINAL RECORDS</span><h2 id="irExplorerTitle">EVIDENCE RECORDS</h2></div><span class="hud-chip" id="irExplorerCount">0</span></div>
+          <div class="pbody">
+            <div class="ir-explorer-filters">
+              <input id="irQuery" type="search" aria-label="Search records" placeholder='Words, "quoted phrase", -exclude, or field:value (src dst port host user query kind format quality source line)'>
+              <select id="irKind" aria-label="Record kind"><option value="">All kinds</option><option>auth</option><option>conn</option><option>dns</option><option>http</option><option>tls</option><option>alert</option><option>ssh</option><option>syslog</option><option>scan</option><option>vuln</option><option>sensor</option><option>text</option><option>other</option></select>
+              <select id="irQuality" aria-label="Timestamp quality"><option value="">Any timestamp</option><option value="exact">Exact (zone or epoch)</option><option value="assumed">Assumed zone/year</option><option value="unknown">Unknown time</option><option value="conflict">Has conflicts</option></select>
+              <label class="ir-check"><input type="checkbox" id="irInWindow" checked> Window only</label>
+            </div>
+            <div class="ir-scope" id="irScope" hidden></div>
+            <div class="op-table ir-table"><table><thead><tr><th scope="col">Event time (UTC) / quality</th><th scope="col">Source / kind</th><th scope="col">Observation</th></tr></thead><tbody id="irRows"></tbody></table></div>
+            <div class="ir-actions"><button class="btn btn--sm" id="irPrev">← PREVIOUS</button><span id="irPage" class="ir-hint"></span><button class="btn btn--sm" id="irNext">NEXT →</button><button class="btn btn--sm" id="irExportRecords">EXPORT MATCHING RECORDS</button><button class="btn btn--sm btn--danger" id="irClearAll">CLEAR SESSION EVIDENCE</button></div>
+            <div class="ir-record" id="irRecord"><p class="fabric-empty">Select a record to see its original text, source file and line, both timestamps, and any conflicts.</p></div>
+          </div>
+        </article>
+
+        <article class="panel ir-panel" id="irCases" aria-labelledby="irCasesTitle">
+          <div class="phead"><div class="phead__title"><span class="phead__kicker">06 // CASES // VERSIONED BROWSER STORAGE</span><h2 id="irCasesTitle">CASE FILES</h2></div><span class="hud-chip" id="irStoreChip">STORAGE —</span></div>
+          <div class="pbody ir-cases">
+            <div>
+              <p class="ir-status" id="irStoreStatus" role="status"></p>
+              <div class="ir-actions"><button class="btn btn--sm" id="irNewCase">NEW EMPTY CASE</button><label class="btn btn--sm" for="irCaseFile">IMPORT CASE FILE</label><input id="irCaseFile" type="file" accept=".json,application/json" hidden></div>
+              <div class="ir-case-list" id="irCaseList"></div>
+            </div>
+            <div class="ir-case-editor" id="irCaseEditor"><p class="fabric-empty">Create a case from a finding, or open a saved one. Cases keep their evidence, notes, disposition and history in this browser until you delete them.</p></div>
+          </div>
+        </article>
+
+        <dialog class="fabric-dialog ir-dialog" id="irDialog" aria-labelledby="irDialogTitle"></dialog>
+      </section>

@@ -1,0 +1,25 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	dns
+#open	2026-10-23-18-00-00
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	query	qtype_name	rcode_name	answers
+#types	string	string	string	string	string	string	string	string	string	string	string
+1792778919.431000	CNx0	10.20.0.23	51000	10.20.0.2	53	udp	zhd94r0bqx9.test	A	NXDOMAIN	-
+1792778921.731000	CNx1	10.20.0.23	51001	10.20.0.2	53	udp	h4ig2fzns81.test	A	NXDOMAIN	-
+1792778924.031000	CNx2	10.20.0.23	51002	10.20.0.2	53	udp	66x3zhls683.test	A	NXDOMAIN	-
+1792778926.331000	CNx3	10.20.0.23	51003	10.20.0.2	53	udp	xl6ho2fy61a.test	A	NXDOMAIN	-
+1792778928.631000	CNx4	10.20.0.23	51004	10.20.0.2	53	udp	ut1nkbahxdu.test	A	NXDOMAIN	-
+1792778930.931000	CNx5	10.20.0.23	51005	10.20.0.2	53	udp	7zgg0tlc304.test	A	NXDOMAIN	-
+1792778933.231000	CNx6	10.20.0.23	51006	10.20.0.2	53	udp	zafxwhoiiu9.test	A	NXDOMAIN	-
+1792778935.531000	CNx7	10.20.0.23	51007	10.20.0.2	53	udp	azre8uy924g.test	A	NXDOMAIN	-
+1792778937.831000	CNx8	10.20.0.23	51008	10.20.0.2	53	udp	c2wvzzvvi0h.test	A	NXDOMAIN	-
+1792778940.131000	CNx9	10.20.0.23	51009	10.20.0.2	53	udp	8zdf7fpcja3.test	A	NXDOMAIN	-
+1792778942.431000	CNx10	10.20.0.23	51010	10.20.0.2	53	udp	tjv6fitcrrv.test	A	NXDOMAIN	-
+1792778944.731000	CNx11	10.20.0.23	51011	10.20.0.2	53	udp	qaeworre36i.test	A	NXDOMAIN	-
+1792778947.031000	CNx12	10.20.0.23	51012	10.20.0.2	53	udp	2tnjqqtgef3.test	A	NXDOMAIN	-
+1792778949.331000	CNx13	10.20.0.23	51013	10.20.0.2	53	udp	k021ew4x9ez.test	A	NXDOMAIN	-
+1792778951.631000	CNx14	10.20.0.23	51014	10.20.0.2	53	udp	f23ltwy6kad.test	A	NXDOMAIN	-
+1792778957.931000	CNr0	10.20.0.23	51100	10.20.0.2	53	udp	update-cdn.example	A	NOERROR	198.51.100.77
+1792778450.000000	CNb0	10.20.0.23	51200	10.20.0.2	53	udp	www.example.com	A	NOERROR	192.0.2.10
