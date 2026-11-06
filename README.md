@@ -1,6 +1,16 @@
-# Ethan Fleming — Cyber Portfolio
+# Ethan Fleming — Cybersecurity Portfolio
 
-I am pursuing an entry-level cybersecurity role and studying for CompTIA Security+. I hold an Associate of Arts from Collin College. This portfolio includes a defensive investigation and a personal security-focused web project.
+## About me
+
+I am an entry-level cybersecurity candidate in Prosper, Texas, pursuing SOC Analyst, MDR Analyst, and security operations opportunities with MSSPs and other security teams. I hold an **Associate of Arts from Collin College** and am **actively studying for CompTIA Security+; I have not yet earned the certification**.
+
+My portfolio focuses on investigating suspicious activity, documenting evidence, explaining uncertainty, and communicating clear next steps. My Carnage training case study demonstrates network-traffic analysis with Wireshark, a UTC investigation timeline, historical indicators, and proposed escalation steps. Nexus Vortex is a personal web project that brings together imported-evidence analysis, file hashing, case notes, and clearly labelled simulations.
+
+I bring writing and customer-service experience, a methodical approach to problem solving, and a willingness to learn through feedback and structured training. I am available for **full-time work, including overnight, evening, weekend, and rotating shifts**, with a preference for remote roles.
+
+These projects demonstrate my learning and project work. They are not claims of professional SOC employment or production incident-response experience.
+
+**Contact:** [ethanflem1@gmail.com](mailto:ethanflem1@gmail.com) · [GitHub profile](https://github.com/ethancf55)
 
 ## Featured projects
 
