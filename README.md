@@ -1,213 +1,121 @@
-# Ethan Fleming — Cybersecurity Portfolio
+# Ethan Flmeing — Mythos Defense Access application packet
+Prepared November 17, 2026. Draft for applicant review; not submitted.
 
-## About me
+## Recommended application
+Apply as Ethan Fleming, an individual, for Cyber Verification Program Defense Access on the account 
 
-I am an entry-level cybersecurity candidate in Prosper, Texas, pursuing SOC Analyst, MDR Analyst, and security operations opportunities with MSSPs and other security teams. I hold an **Associate of Arts from Collin College** and am **actively studying for CompTIA Security+; I have not yet earned the certification**.
+## Evidence reviewed
+Portfolio: https://github.com/ethancf55/Cyber-Portfolio
+Reviewed README at repository commit fdee5b5e8b943ed55a4de104ebfaffb13374c28b.
+Permanent evidence link: https://github.com/ethancf55/Cyber-Portfolio/blob/fdee5b5e8b943ed55a4de104ebfaffb13374c28b/README.md
 
-My portfolio focuses on investigating suspicious activity, documenting evidence, explaining uncertainty, and communicating clear next steps. My Carnage training case study demonstrates network-traffic analysis with Wireshark, a UTC investigation timeline, historical indicators, and proposed escalation steps. Nexus Vortex is a personal web project that brings together imported-evidence analysis, file hashing, case notes, and clearly labelled simulations.
+### Carnage Network Traffic Investigation
+Applicant-confirmed contribution: Ethan completed the Carnage investigation himself.
 
-I bring writing and customer-service experience, a methodical approach to problem solving, and a willingness to learn through feedback and structured training. I am available for **full-time work, including overnight, evening, weekend, and rotating shifts**, with a preference for remote roles.
+The published report documents a defensive training investigation of historical Squirrelwaffle, Qakbot, and Cobalt Strike-associated traffic. It includes a capture SHA-256, packet references, UTC timeline, HTTP/DNS/TLS pivots, beacon-interval analysis, historical indicators, ATT&CK interpretations, and proposed incident-response steps. It explicitly distinguishes observations, scenario details, and attribution from Brad Duncan's source research.
 
-These projects demonstrate my learning and project work. They are not claims of professional SOC employment or production incident-response experience.
+The report documents 26 POST requests with an approximately 25.10-second median interval. These figures were read in the report, not independently recalculated during this application preparation. The report identifies Wireshark, TShark, and VirusTotal in its investigation workflow. No claim is made that payloads were executed or that a live attack was conducted.
 
-**Contact:** [ethanflem1@gmail.com](mailto:ethanflem1@gmail.com) · [GitHub profile](https://github.com/ethancf55)
+Best evidence of: analytical care, traceable investigation reasoning, scope discipline, communication of uncertainty.
+Does not establish: original vulnerability discovery, production incident response, independently attributed Cobalt Strike malware, or an employment history.
 
-## Featured projects
+### Nexus Vortex
+Applicant-confirmed contribution: Ethan originated the Nexus Vortex concept, selected its tools and features, and reports that he built the app. This does not specify whether particular development tools or AI assistance were used.
 
-| Project | Type | What to explore |
-| --- | --- | --- |
-| [Carnage Network Traffic Investigation](#carnage-network-traffic-investigation) | Completed defensive training case study | Packet evidence, investigation timeline, indicators, and proposed escalation steps |
-| [Nexus Vortex](https://nexus-vortex.safebison1024.chatgpt.site/) | Interactive web project with evidence-analysis tools and training simulations | Imported evidence, file hashing, case documentation, and visual investigation workflows |
+Project URL: https://nexus-vortex.safebison1024.chatgpt.site/
+The portfolio describes a personal browser-based project for imported-evidence review, incident reconstruction, file hashing, case notes, and training simulations. It explicitly labels fictional C2/quantum displays and other simulated features, and distinguishes browser functionality from capabilities requiring a local companion.
 
-## Nexus Vortex
+The portfolio repository contains the README only. Application source and local companion are not included. The live site could not be retrieved using the web reader in this review; functionality has not been independently verified here.
 
-**[Open the live project](https://nexus-vortex.safebison1024.chatgpt.site/)**
+Best evidence of: a relevant project direction and an emphasis on evidence provenance.
+Next useful improvement: a small reproducible validation example and, if appropriate, inspectable source with accurate AI-assistance attribution.
 
-Nexus Vortex is my personal cyber-operations web project, hosted through ChatGPT Sites. It brings browser-based evidence tools and interactive security-training scenarios into one interface.
+## Suggested application responses
+These are adaptable drafts, not a transcription of the authenticated application form. Review first-person statements before submission.
 
-### Features in the published web edition
+### Background / security work
+I am Ethan Fleming, an entry-level cybersecurity practitioner in Prosper, Texas, focused on defensive network investigation and evidence-based incident analysis. My public portfolio includes a completed Carnage network-traffic training case study and Nexus Vortex, a personal security-analysis and training web project. I hold an Associate of Arts from Collin College and am studying for CompTIA Security+.
 
-- **Incident reconstruction:** Import supported logs, review accepted and rejected records, inspect source records and timestamp assumptions, and explore findings through a timeline and interactive mesh.
-- **Evidence Lab and case notes:** Inspect supplied text/log evidence, review rule-based findings, and save or export investigation notes and case data.
-- **File hashing and verification:** Compute SHA-256, SHA-512, and BLAKE3 digests and compare a result against a supplied reference digest.
-- **File integrity review:** On supported browsers, select a folder, capture a baseline, and review changes during subsequent scans.
-- **Training simulations:** Explore alert-triage exercises, network visualizations, and incident-sequence reconstruction using simulated scenarios.
+I personally completed the Carnage investigation. My report documents HTTP, DNS, and TLS investigation of a historical capture involving Squirrelwaffle, Qakbot, and Cobalt Strike-associated infrastructure. It provides packet references, a UTC timeline, a capture hash, historical indicators, and recommended escalation steps. I distinguish packet observations from source-research attribution and from actions that would be recommended in a real incident.
 
-### Relevance to security work
+I conceived and built Nexus Vortex, including choosing the tools and features. It explores imported-evidence analysis, hashing, investigation notes, and explicitly labelled simulations. My experience is portfolio and training work; I am not representing it as professional SOC employment or production incident response.
 
-The project explores evidence provenance, clear investigation records, the distinction between an observation and a conclusion, and presenting technical information in an interactive interface. It complements the packet-analysis case study below.
+### Intended use
+I am requesting individual Defense Access for defensive analysis of historical public captures, synthetic log datasets, and code or test environments that I own or am authorized to assess. My proposed work focuses on correlating network evidence, evaluating detection hypotheses, checking incident timelines, and improving the reliability of evidence-handling tools.
 
-### Scope and limitations
+I plan to use Claude to compare competing explanations against source evidence, identify unsupported conclusions, and propose regression tests for malformed, duplicate, contradictory, or untrusted records. Outputs would undergo human review before becoming portfolio findings. I would document data provenance, known ground truth, limitations, and attribution.
 
-The public web edition processes selected evidence in the browser. Browser storage and exported cases may contain sensitive information, so use synthetic or sanitized examples for demonstrations.
+### Why advanced cyber access
+I would like to evaluate Mythos for deeper defensive interpretation of malware-associated network activity and rigorous review of security-analysis logic. My current portfolio provides concrete datasets and workflows for this evaluation. I do not claim that ordinary models have been proven inadequate or that I have documented safeguard blocks; I would provide specific examples if they arise.
 
-Training dashboards, scoring, memory views, and the fictional C2/quantum displays are simulations. They do not demonstrate live threat detection, real memory acquisition, or cryptographic decryption. A rule match is a prompt for investigation, not proof of compromise.
+My objective is a reproducible assessment of analytical accuracy and evidence integrity, including whether the model preserves uncertainty and avoids treating untrusted records as authoritative. I am requesting the Defense tier appropriate to this scope.
 
-Live log collection, account connectors, and scoped network scanning require a separate local companion and are not available just by opening the hosted page. Folder monitoring depends on browser support, permission, and the page remaining active; this is not continuous endpoint protection.
+### Evidence links
+Public portfolio and Carnage report:
+https://github.com/ethancf55/Cyber-Portfolio
 
-This entry links to the current hosted project. Its application source and local companion are not included in this portfolio repository.
+Version reviewed for this application:
+https://github.com/ethancf55/Cyber-Portfolio/blob/fdee5b5e8b943ed55a4de104ebfaffb13374c28b/README.md
 
----
+Nexus Vortex:
+https://nexus-vortex.safebison1024.chatgpt.site/
 
-# Carnage Network Traffic Investigation
+### Short version if the form has limited space
+I am an independent, entry-level cybersecurity practitioner focused on defensive network investigation and evidence integrity. My public portfolio includes a Carnage packet-analysis training report with capture hash, packet references, UTC timeline, and careful attribution of malware-associated traffic, plus Nexus Vortex, a personal evidence-analysis and security-training web project. I seek individual Defense Access to evaluate historical captures, synthetic logs, and owned code, with human-reviewed findings and reproducible validation. My work is training and project development, not professional SOC employment.
+Portfolio: https://github.com/ethancf55/Cyber-Portfolio
 
-**Analyst:** Ethan Fleming  
-**Type:** Defensive training case study  
-**Tools:** Wireshark on macOS, VirusTotal for the original investigation, and TShark for packet-reference verification  
-**Capture date:** September 24, 2021  
-**Skills demonstrated:** HTTP and DNS investigation, TLS metadata review, timeline construction, indicator documentation, and incident escalation reasoning
+## Proposed next project — not completed work
+Evidence Integrity Validation for Nexus Vortex.
 
-## Executive summary
+1. Use a synthetic, non-sensitive fixture with explicit expected outcomes.
+2. Test valid and malformed imports, timestamp interpretation, duplicate records, contradictory evidence, source provenance, and inert rendering of untrusted text.
+3. Check supported hash outputs against independently calculated reference values.
+4. Record actual results, failures, fixes, and regression checks.
+5. Publish a concise report with exact app version, fixture, reproduction instructions, and limitations.
+6. Describe AI assistance and Ethan's own review accurately.
 
-The capture shows workstation `10.9.23.102` requesting `documents.zip` from `attirenepal[.]com`, followed by connections to three domains associated with loader delivery in the source research. The host then sends 26 HTTP POST requests to `maldivehost[.]net`, with a median interval of approximately 25.10 seconds. Later traffic includes infrastructure identified by the source researcher as Cobalt Strike, plus a lookup for the public IP-check service `api[.]ipify[.]org`.
+Suggested metrics: accepted/rejected record counts versus expected counts; duplicate-handling correctness; timeline ordering; provenance preservation; false-positive and false-negative counts on the fixture; reproducibility of exported cases. Do not invent numeric performance targets or achieved results. This project can improve the application evidence, but is not an Anthropic-mandated deliverable or a guarantee of approval.
 
-Together, the network evidence and source research support treating the workstation as compromised in this training scenario. In a real investigation, I would escalate the findings with the affected host, UTC timeline, and relevant packet references, then recommend containment and collection of endpoint evidence.
+## Security readiness — not yet verified
+Do not attest that a control is active until it has been checked.
 
-This is lab analysis of historical traffic. The response actions below are recommendations; they were not performed on a production environment.
-
-## Scenario and evidence scope
-
-[TryHackMe's Carnage scenario](https://tryhackme.com/room/c2carnage) describes a Bartell Ltd employee opening a Word attachment and enabling content, followed by an endpoint alert. Those user actions come from the scenario, rather than direct observation in this network capture.
-
-The underlying capture and indicator list were published by [Brad Duncan at Malware-Traffic-Analysis.net](https://www.malware-traffic-analysis.net/2021/09/24/index.html) as a Squirrelwaffle infection involving Qakbot and Cobalt Strike. That research describes an email-link-to-ZIP-to-Office-document chain. I keep the training narrative and the source research distinct rather than presenting them as identical evidence.
-
-The source researcher also states uncertainty about whether Squirrelwaffle loaded Qakbot or whether they were loaded at the same time. This report does not claim to resolve that sequence.
-
-### Reproducibility
-
-Packet references below were checked against the original public capture:
-
-- **Filename:** `2021-09-24-Squirrelwaffle-with-Qakbot-and-Cobalt-Strike.pcap`
-- **Size:** 56,029,783 bytes
-- **SHA-256:** `3cacb2c09f2309cec8bddc31a52fe0f9595837501f89a4dbeee589dc11e28d19`
-- **Time convention:** UTC, displayed as whole seconds with fractional seconds truncated
-- **Scope:** Selected download, loader-connection, post-infection, Cobalt Strike-related, and IP-check activity
-
-The capture was examined as recorded data. Embedded payloads were not executed, and the suspicious destinations were not contacted. The capture itself is not redistributed in this repository.
-
-## Timeline
-
-All events occurred on **September 24, 2021, in UTC**. Frame numbers refer to the capture identified above.
-
-| Time | Frame | Observation |
-|---|---:|---|
-| 16:44:38 | 1735 | HTTP GET to `85.187.128.24`, Host `attirenepal[.]com`, requesting `/incidunt-consequatur/documents.zip` |
-| 16:45:11 | 2422, 2427 | DNS query for `finejewels[.]com[.]au`, followed by a TLS ClientHello to `148.72.192.206` with that server name |
-| 16:45:20–16:45:21 | 2983, 3009 | DNS query for `thietbiagt[.]com`, followed by a TLS ClientHello to `210.245.90.247` with that server name |
-| 16:45:25 | 3224, 3229 | DNS query for `new[.]americold[.]com`, followed by a TLS ClientHello to `148.72.53.144` with that server name |
-| 16:46:16 | 3822 | First HTTP POST to `208.91.128.6`, Host `maldivehost[.]net`, with URI prefix `/zLIisQRWZI9/` |
-| 16:46:41 | 3908 | Next POST to the same host, approximately 25.11 seconds after the first |
-| 16:53:27 | 4493 | DNS query for `securitybusinpuff[.]com`, associated with Cobalt Strike in the source indicator list |
-| 16:55:10–16:55:11 | 6510, 6516 | DNS query for `survmeter[.]live`, followed by HTTP to `185.106.96.158` using Host `ocsp.verisign[.]com` |
-| 16:55:44 | 7112 | TLS ClientHello to `185.125.204.174` with server name `securitybusinpuff[.]com` |
-| 17:00:04 | 24147, 24162 | DNS query for `api[.]ipify[.]org`, followed by a TLS ClientHello using that server name |
-
-## Findings and reasoning
-
-### Initial archive request
-
-Frame 1735 identifies the source workstation, destination IP, HTTP Host header, and requested ZIP path. The source research identifies the archive member as `chart-1530076591.xls`.
-
-The network request establishes contact with the archive-delivery location. The ZIP contents and source research support the Office-document link in the infection chain. A request alone does not prove that a user opened the downloaded file or enabled macros.
-
-### Connections associated with loader delivery
-
-The workstation queries three domains and then initiates TLS sessions using matching server names: `finejewels[.]com[.]au`, `thietbiagt[.]com`, and `new[.]americold[.]com`. Brad Duncan's indicator list identifies URLs on these hosts as loader DLL locations.
-
-Frame 2436 contains the certificate for `finejewels[.]com[.]au`; the leaf certificate issuer is **Go Daddy Secure Certificate Authority - G2**. A recognized certificate issuer does not establish that a destination is safe.
-
-DNS queries and TLS metadata show the contacted infrastructure. Without decryption, they do not independently reveal the HTTPS response bodies or prove successful payload execution.
-
-### Repeated post-infection traffic
-
-Filtering for POST requests to `208.91.128.6` with Host `maldivehost.net` returns **26 requests**. Their URI paths start with `/zLIisQRWZI9/`. Across the 25 consecutive intervals, the median is approximately **25.10 seconds**, with a range of approximately **24.98–25.70 seconds**.
-
-That regularity supports a beaconing hypothesis in the context of this infection. Periodicity alone would be insufficient to label traffic malicious. The source researcher specifically attributes this destination and URI pattern to **Squirrelwaffle post-infection traffic**.
-
-### Cobalt Strike infrastructure and Host-header mismatch
-
-The source indicator list associates `185.125.204.174` with `securitybusinpuff[.]com`, and `185.106.96.158` with `survmeter[.]live`. The capture contains traffic to both IPs.
-
-One useful detail is the HTTP Host header `ocsp.verisign.com` in requests sent to `185.106.96.158`. In this context, the familiar-looking header should not override the destination IP, DNS evidence, and source attribution. This is not evidence that Verisign's own service was compromised.
-
-The Cobalt Strike attribution here relies on the original research, alongside the observed network evidence. It is not presented as a new, independently reproduced VirusTotal verdict.
-
-### Public IP-check activity
-
-At 17:00:04 UTC, the workstation queries `api[.]ipify[.]org` and begins a TLS connection using that server name. The source research identifies this as Qakbot-related public IP-check activity.
-
-An IP-check service is not inherently malicious. Its relevance comes from the host's surrounding infection activity, so I would correlate it with other evidence rather than recommend blocking the service broadly.
-
-## Historical indicators
-
-These values describe the 2021 capture and source research. They are investigation pivots for this case, not claims about current domain ownership or reputation. Dots in domains are defanged as `[.]`.
-
-| Indicator | Role in this case | Evidence basis |
-|---|---|---|
-| `10.9.23.102` | Affected workstation | Capture |
-| `attirenepal[.]com` / `85.187.128.24` | Initial archive request | HTTP frame 1735; source research |
-| `documents.zip` / `chart-1530076591.xls` | Archive and Office document | Requested ZIP in capture; archive member in source research |
-| `finejewels[.]com[.]au` / `148.72.192.206` | Loader-associated infrastructure | DNS/TLS metadata; source research |
-| `thietbiagt[.]com` / `210.245.90.247` | Loader-associated infrastructure | DNS/TLS metadata; source research |
-| `new[.]americold[.]com` / `148.72.53.144` | Loader-associated infrastructure | DNS/TLS metadata; source research |
-| `maldivehost[.]net` / `208.91.128.6` | Squirrelwaffle post-infection POSTs | Capture; source attribution |
-| `securitybusinpuff[.]com` / `185.125.204.174` | Cobalt Strike-associated infrastructure | Capture; source attribution |
-| `survmeter[.]live` / `185.106.96.158` | Cobalt Strike-associated infrastructure | Capture; source attribution |
-| `ocsp.verisign[.]com` | Host header used in traffic to `185.106.96.158` | HTTP frame 6516; not a blanket domain-block recommendation |
-| `api[.]ipify[.]org` | Public IP-check service contacted by the workstation | Frame 24147; contextual indicator only |
-
-## Investigation method
-
-1. Set Wireshark's time display to UTC and identify the source workstation.
-2. Inspect HTTP requests while excluding background SSDP discovery traffic:
-   ```text
-   ip.src == 10.9.23.102 && http.request && !ssdp
-   ```
-3. Inspect frame 1735 and follow its TCP stream to review the archive request and response context. Compare the filenames with the source indicator list.
-4. Review the POST sequence and calculate intervals from packet timestamps:
-   ```text
-   ip.src == 10.9.23.102 && ip.dst == 208.91.128.6 &&
-   http.request.method == "POST" && http.host == "maldivehost.net"
-   ```
-5. Examine DNS queries and TLS ClientHello server names after the initial archive request:
-   ```text
-   ip.src == 10.9.23.102 && frame.number > 1735 &&
-   (dns.flags.response == 0 || tls.handshake.type == 1)
-   ```
-6. Review the server certificate in frame 2436 and correlate server names with destination IPs. Certificate identity is contextual evidence, not a malware verdict.
-7. Compare the observed infrastructure with Brad Duncan's indicator list. VirusTotal can provide additional context, but a lookup's date and evidence should be recorded before treating it as independent confirmation.
-
-Excluding SSDP in this workflow is an analysis filter. This case does not claim deployment or tuning of a production detection rule.
-
-## Recommended response in a real environment
-
-- **Escalate and contain:** Send the host identity, UTC timeline, and packet references to the incident responder. Request authorized endpoint isolation while preserving evidence.
-- **Scope the incident:** Search endpoint, DNS, proxy, firewall, and email records for the archive request and associated destinations. Check whether other hosts show the same sequence.
-- **Collect endpoint evidence:** Investigate Office child processes, downloaded files, DLL execution, scheduled tasks, and other persistence mechanisms. Network traffic alone does not establish these endpoint details.
-- **Apply targeted controls:** Validate current relevance before blocking confirmed malicious destinations. Avoid broad blocks on legitimate services based only on a misleading Host header or an IP-check lookup.
-- **Protect accounts and recover:** Review sign-ins and potential credential exposure. Reset credentials, revoke sessions, and rebuild or remediate affected systems as supported by the investigation and response procedures.
-
-In business terms, the concern is that a workstation may remain under external control and expose credentials or business data. This capture does not by itself establish data theft or the full impact of the infection.
-
-## MITRE ATT&CK interpretation
-
-These are analyst mappings, with their evidence limits stated explicitly.
-
-| Technique | Basis |
+| Item | Status / action |
 |---|---|
-| [T1566.001 — Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001/) | The TryHackMe Word-attachment scenario; not independently established by the network timeline |
-| [T1204.002 — Malicious File](https://attack.mitre.org/techniques/T1204/002/) | User action described by the scenario and Office-document execution chain in the source research |
-| [T1105 — Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105/) | Archive delivery and loader locations described in the source research; encrypted transfers have the visibility limits noted above |
-| [T1071.001 — Web Protocols](https://attack.mitre.org/techniques/T1071/001/) | HTTP POST activity attributed to Squirrelwaffle and web traffic associated with Cobalt Strike |
-| [T1016.001 — Internet Connection Discovery](https://attack.mitre.org/techniques/T1016/001/) | Public IP/connectivity-check behavior described in the source research and correlated with the observed IP-check connection |
+| Correct account and eligible plan/billing | Pending account choice; must be Ethan's if Ethan operates the model |
+| Government ID and possible live selfie | Applicant completes privately in official verification flow |
+| Google or equivalent identity-provider sign-in | Not checked |
+| MFA enabled | Not checked |
+| Passkey/security key and no email magic-link use by December 15, 2026 | Not checked; configure phishing-resistant MFA now if possible |
+| Individual-only access, no shared sessions | Applicant must accept and maintain |
+| Interim API key handling | If used before cutoff: one key, password manager/local secrets store, no sharing/source-code storage, replace at least every seven days |
+| Credentials from December 15, 2026 | No static/long-lived API keys; interactive OAuth, workload federation where offered |
+| Retention and monitoring | Applicant must understand and accept; no individual ZDR |
+| Incident response | Report security incident within 24 hours; suspected breach/misuse within 72 hours |
+| Cooperation | Investigate identified abuse within 48 hours, cooperate with remediation, respond to misuse inquiries within seven days |
+| Ongoing compliance review | Applicant must be able to supply evidence on request |
 
-## What I learned
+Never place passwords, recovery codes, API keys, or identity-document images in this packet or a public repository.
 
-My early guesses about suspicious domains relied too heavily on their names. Correlating timestamps, destination IPs, HTTP headers, and TLS metadata produced a stronger explanation. I also learned to separate the scenario, packet observations, source attribution, and recommendations so that each conclusion has a clear basis.
+## Remaining applicant facts
+1. Which account will Ethan use, and does it have a qualifying plan or billing?
+2. Are the required identity-provider login and MFA controls enabled?
 
-## Sources
+Contribution clarification received: Ethan completed Carnage himself and originated the concept, selected tools/features, and reports building Nexus Vortex. Specific assistance should be described if an application field asks about it.
 
-- [TryHackMe — Carnage](https://tryhackme.com/room/c2carnage): training scenario and investigation questions.
-- [Brad Duncan — September 24, 2021 Squirrelwaffle with Qakbot and Cobalt Strike](https://www.malware-traffic-analysis.net/2021/09/24/index.html): original capture and accompanying IOC text archive. Credit for capture collection and malware-family attribution belongs to the source researcher.
-- [Wireshark HTTP display-filter reference](https://www.wireshark.org/docs/dfref/h/http.html): HTTP field definitions.
-- [MITRE ATT&CK](https://attack.mitre.org/): technique definitions linked above.
+If the form asks about credentials, incident-response history, vulnerability disclosures, or model refusals, answer with actual facts. Do not convert studying Security+ into being certified or a training case into an original discovery.
+
+## Submission and follow-up
+Portal: https://portal.anthropic.com/
+Select Cyber Verification Program, Apply, individual verification and Defense Access as offered. Complete identity verification privately. Adapt the drafts to the actual form fields, inspect the completed answers, and personally accept accurate security attestations and terms.
+
+The currently published help page lists a two-day target for Defense review, not a guarantee. Pro/Max/Ultra access activates automatically after approval. If rejected, the page permits reapplication after seven days; strengthen evidence first rather than resubmitting an unchanged application.
+
+No application has been submitted, no account settings changed, and no public portfolio changes made in preparing this packet.
+
+## Official references
+Checked November 10, 2026:
+- Program, eligibility and application: https://support.claude.com/en/articles/14604842-cyber-verification-program
+- Security requirements: https://support.claude.com/en/articles/17202708-cyber-verification-program-security-requirements
+- Program announcement: https://www.anthropic.com/news/cyber-verification-program
+
+The strongest supported current presentation is a careful, evidence-backed early-career defensive practitioner. Approval is discretionary; neither a Max subscription nor polished wording establishes professional qualifications.
